@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pa_bank_app/constants.dart';
 import 'package:pa_bank_app/screens/home_screens/home_screen.dart';
-import 'package:pa_bank_app/screens/home_screens/send_money_screen.dart';
 
 class CustomElevatedButton extends StatefulWidget {
   CustomElevatedButton({Key key}) : super(key: key);
