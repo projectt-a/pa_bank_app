@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pa_bank_app/screens/home_screens/add_new_card_screen.dart';
+import 'package:pa_bank_app/screens/login_screens/login_screen.dart';
+import 'package:pa_bank_app/services/auth_service.dart';
 
 class HomeAppBarComponent extends StatelessWidget {
   const HomeAppBarComponent({
@@ -8,6 +10,7 @@ class HomeAppBarComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AuthService _authService = AuthService();
     return AppBar(
       bottomOpacity: 0.0,
       elevation: 0.0,
@@ -34,8 +37,13 @@ class HomeAppBarComponent extends StatelessWidget {
           icon: const Icon(Icons.exit_to_app_outlined),
           tooltip: 'Çıkış',
           onPressed: () {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text('Çıkış Yapıldı.')));
+            _authService.signOut();
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => LoginScreen(),
+              ),
+            );
           },
         ),
       ],

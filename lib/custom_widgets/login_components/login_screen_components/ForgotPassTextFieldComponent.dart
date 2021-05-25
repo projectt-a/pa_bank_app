@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pa_bank_app/constants.dart';
-import 'package:pa_bank_app/screens/login_screens/new_pass.dart';
 
 class ForgotPassTextFieldComponent extends StatelessWidget {
   const ForgotPassTextFieldComponent({
@@ -13,12 +12,7 @@ class ForgotPassTextFieldComponent extends StatelessWidget {
       padding: const EdgeInsets.only(top: 15.0),
       child: Container(
         child: InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => NewPass()),
-            );
-          },
+          onTap: () {},
           child: Text(
             'Forgot my password',
             style: new TextStyle(
