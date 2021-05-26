@@ -4,8 +4,10 @@ import 'package:pa_bank_app/constants.dart';
 class LoginEmailTextField extends StatelessWidget {
   const LoginEmailTextField({
     Key key,
-    var mailController,
+    this.textEditingControlEmail,
   }) : super(key: key);
+
+  final TextEditingController textEditingControlEmail;
 
   @override
   Widget build(BuildContext context) {

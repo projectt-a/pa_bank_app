@@ -5,7 +5,12 @@ import 'package:pa_bank_app/screens/home_screens/card_info_screen.dart';
 class CompactMasterCard extends StatelessWidget {
   const CompactMasterCard({
     Key key,
+    this.balance = 0,
+    this.validThru = "",
   }) : super(key: key);
+
+  final double balance;
+  final String validThru;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +63,7 @@ class CompactMasterCard extends StatelessWidget {
                       Container(
                         width: 160,
                         child: Text(
-                          "\$7 534.14",
+                          "\$" + balance.toString(),
                           style: new TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 28,
@@ -99,7 +104,7 @@ class CompactMasterCard extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "12/24",
+                          validThru,
                           style: new TextStyle(
                             fontStyle: FontStyle.italic,
                             fontSize: 17,

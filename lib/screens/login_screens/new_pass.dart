@@ -39,6 +39,8 @@ class _GenericComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ResetPassTextComponent newResetPassTextComp = ResetPassTextComponent();
+    var textEditingControlEmaill = TextEditingController();
     return SafeArea(
       child: SingleChildScrollView(
         child: Column(
@@ -60,8 +62,10 @@ class _GenericComponent extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      ResetPassTextComponent(),
-                      LoginEmailTextField(),
+                      newResetPassTextComp,
+                      LoginEmailTextField(
+                        textEditingControlEmail: textEditingControlEmaill,
+                      ),
                     ],
                   ),
                 ),
