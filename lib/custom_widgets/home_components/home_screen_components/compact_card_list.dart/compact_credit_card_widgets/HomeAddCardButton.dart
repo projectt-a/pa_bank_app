@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pa_bank_app/constants.dart';
-import 'package:pa_bank_app/screens/home_screens/send_money_screen.dart';
+import 'package:pa_bank_app/screens/home_screens/add_new_card_screen.dart';
 
 class HomeAddCardButton extends StatelessWidget {
   const HomeAddCardButton({
@@ -29,7 +29,7 @@ class HomeAddCardButton extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => SendMoneyScreen()),
+                MaterialPageRoute(builder: (context) => AddNewCardScreen()),
               );
             },
           ),

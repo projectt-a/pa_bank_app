@@ -5,7 +5,7 @@ import 'package:pa_bank_app/screens/home_screens/home_screen.dart';
 import 'package:pa_bank_app/screens/login_screens/login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
@@ -13,11 +13,10 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  User firebaseUser = FirebaseAuth.instance.currentUser;
-  Widget firstWidget;
-
   @override
   Widget build(BuildContext context) {
+    User firebaseUser = FirebaseAuth.instance.currentUser;
+    Widget firstWidget;
     if (firebaseUser != null) {
       firstWidget = HomeScreen();
     } else {

@@ -7,10 +7,12 @@ class HomePersonCard extends StatelessWidget {
     Key key,
     this.username = "",
     this.cardType = "",
+    this.friendIban = "",
   }) : super(key: key);
 
   final String username;
   final String cardType;
+  final String friendIban;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,11 @@ class HomePersonCard extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => SendMoneyListedPerson()),
+              MaterialPageRoute(
+                  builder: (context) => SendMoneyListedPerson(
+                        userName: username,
+                        friendIban: friendIban,
+                      )),
             );
           },
           child: Container(
@@ -89,7 +95,7 @@ String cardTypeChanger(String cardType) {
   } else if (cardType == "mastercard") {
     cardType = 'assets/images/mastercard.png';
     return cardType;
-  } else if (cardType == "american") {
+  } else if (cardType == "americanExpress") {
     cardType = 'assets/images/american.png';
     return cardType;
   } else {

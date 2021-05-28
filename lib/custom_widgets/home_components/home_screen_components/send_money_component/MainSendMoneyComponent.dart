@@ -39,10 +39,12 @@ class FriendStream extends StatelessWidget {
               if (doc['uid'].toString() == uid) {
                 final _username = doc['friendUsername'].toString();
                 final _cardType = doc['friendCardType'].toString();
+                final _friendIban = doc['friendIban'].toString();
                 Widget friendCard;
                 friendCard = HomePersonCard(
                   cardType: _cardType ?? "",
                   username: _username ?? "",
+                  friendIban: _friendIban ?? "",
                 );
 
                 friendWidgets.add(friendCard);
