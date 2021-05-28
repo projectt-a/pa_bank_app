@@ -9,30 +9,25 @@ class HomeAddPerson extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Container(
+    return Container(
+      padding: EdgeInsets.all(0),
+      width: 50,
+      height: 50,
+      color: kPrimaryColor,
+      child: IconButton(
+        iconSize: 50,
         padding: EdgeInsets.all(0),
-        width: 50,
-        height: 50,
-        color: kPrimaryColor,
-        child: IconButton(
-          iconSize: 50,
-          padding: EdgeInsets.all(0),
-          icon: const Icon(
-            Icons.add_circle_outline,
-            color: kSeconderyColor,
-          ),
-          tooltip: 'Ekle',
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => SendMoneyScreen()),
-            );
-          },
+        icon: const Icon(
+          Icons.add_circle_outline,
+          color: kSeconderyColor,
         ),
+        tooltip: 'Ekle',
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SendMoneyScreen()),
+          );
+        },
       ),
     );
   }

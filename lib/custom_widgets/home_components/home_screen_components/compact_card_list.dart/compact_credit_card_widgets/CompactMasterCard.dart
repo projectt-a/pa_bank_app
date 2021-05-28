@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:pa_bank_app/constants.dart';
 import 'package:pa_bank_app/screens/home_screens/card_info_screen.dart';
+import 'package:pa_bank_app/services/firestore_service.dart';
+
+FirestoreService _firestoreService = FirestoreService();
 
 class CompactMasterCard extends StatelessWidget {
   const CompactMasterCard({
     Key key,
     this.balance = 0,
     this.validThru = "",
+    this.iban = "",
   }) : super(key: key);
 
   final double balance;
   final String validThru;
+  final String iban;
 
   @override
   Widget build(BuildContext context) {
@@ -48,11 +53,10 @@ class CompactMasterCard extends StatelessWidget {
                     ),
                     IconButton(
                       color: Colors.white70,
-                      icon: const Icon(Icons.visibility_outlined),
-                      tooltip: 'Bakiye gizle',
+                      icon: const Icon(Icons.cancel_presentation_rounded),
+                      tooltip: 'Kartı sil',
                       onPressed: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Bakiye gizlendi.')));
+                        _firestoreService.deleteCard(iban);
                       },
                     ),
                   ],

@@ -120,7 +120,7 @@ class _AddNewCardScreenState extends State<AddNewCardScreen> {
                   ),
                 ],
               ),
-            ), //Ayır1.0
+            ),
           ),
         ),
       ),

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class Firestore {
+class FirestoreService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
@@ -15,5 +15,23 @@ class Firestore {
         .set({'userName': name, 'email': email});
 
     return user.user;
+  }
+
+  deleteCard(String cardIban) {
+    FirebaseFirestore.instance
+        .collection("Cards")
+        .where("iban", isEqualTo: cardIban)
+        .get()
+        .then((value) {
+      value.docs.forEach((element) {
+        FirebaseFirestore.instance
+            .collection("Cards")
+            .doc(element.id)
+            .delete()
+            .then((value) {
+          print("Success!");
+        });
+      });
+    });
   }
 }

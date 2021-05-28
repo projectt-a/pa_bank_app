@@ -5,7 +5,12 @@ import 'package:pa_bank_app/screens/home_screens/send_money_listedperson.dart';
 class HomePersonCard extends StatelessWidget {
   const HomePersonCard({
     Key key,
+    this.username = "",
+    this.cardType = "",
   }) : super(key: key);
+
+  final String username;
+  final String cardType;
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +33,10 @@ class HomePersonCard extends StatelessWidget {
             height: 100,
             child: Stack(
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10.0),
+                Padding(
+                  padding: const EdgeInsets.all(5.0),
                   child: Image.asset(
-                    'assets/images/elon.png',
+                    cardTypeChanger(cardType),
                     fit: BoxFit.cover,
                     width: 100,
                     height: 100,
@@ -49,16 +54,18 @@ class HomePersonCard extends StatelessWidget {
                     ),
                     width: 100,
                     height: 20,
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Center(
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 2.0),
-                          child: Text(
-                            "İlhan Maske Musk",
-                            style: new TextStyle(
-                              fontSize: 15,
-                              color: kPrimaryColor,
+                    child: Center(
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: .0),
+                            child: Text(
+                              username,
+                              style: new TextStyle(
+                                fontSize: 15,
+                                color: kPrimaryColor,
+                              ),
                             ),
                           ),
                         ),
@@ -72,5 +79,21 @@ class HomePersonCard extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+String cardTypeChanger(String cardType) {
+  if (cardType == "visa") {
+    cardType = 'assets/images/visa.png';
+    return cardType;
+  } else if (cardType == "mastercard") {
+    cardType = 'assets/images/mastercard.png';
+    return cardType;
+  } else if (cardType == "american") {
+    cardType = 'assets/images/american.png';
+    return cardType;
+  } else {
+    cardType = 'assets/images/elon.png';
+    return cardType;
   }
 }

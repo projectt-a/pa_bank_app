@@ -2,12 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pa_bank_app/constants.dart';
 import 'package:pa_bank_app/custom_widgets/login_components/login_screen_components/CtAccountComponent.dart';
 import 'package:pa_bank_app/custom_widgets/login_components/login_screen_components/ForgotPassTextFieldComponent.dart';
-import 'package:pa_bank_app/custom_widgets/login_components/login_screen_components/LoginButtonComponent.dart';
-import 'package:pa_bank_app/custom_widgets/login_components/login_screen_components/LoginEmailtextField.dart';
-import 'package:pa_bank_app/custom_widgets/login_components/login_screen_components/LoginTextComponent.dart';
 import 'package:pa_bank_app/screens/home_screens/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:pa_bank_app/services/auth_service.dart';
 
 class LoginScreen extends StatefulWidget {

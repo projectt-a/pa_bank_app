@@ -38,7 +38,7 @@ class _SendMoneyCardSliderState extends State<SendMoneyCardSlider> {
           ],
           options: CarouselOptions(
             aspectRatio: 16 / 9,
-            viewportFraction: 0.9, //kartın eni boyu
+            viewportFraction: 0.9,
             initialPage: 0,
             enableInfiniteScroll: true,
             reverse: false,
@@ -47,7 +47,6 @@ class _SendMoneyCardSliderState extends State<SendMoneyCardSlider> {
             autoPlayAnimationDuration: Duration(milliseconds: 800),
             autoPlayCurve: Curves.fastOutSlowIn,
             enlargeCenterPage: true,
-            //onPageChanged: callbackFunction,
             scrollDirection: Axis.horizontal,
           )),
     );
