@@ -172,7 +172,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(top: 30.0),
-          child: Text('Username',
+          child: Text('Name Surname',
               style: TextStyle(
                 color: kPrimaryColor,
               )),
@@ -192,7 +192,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             style: TextStyle(color: kPrimaryColor),
             decoration: InputDecoration(
               contentPadding: EdgeInsets.only(top: 14.0),
-              hintText: 'Enter your username',
+              hintText: 'Enter your Name and Surname',
               hintStyle: TextStyle(
                 color: Colors.black38,
                 fontSize: 14,

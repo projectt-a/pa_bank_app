@@ -6,7 +6,8 @@ import 'package:flutter_credit_card/credit_card_widget.dart';
 import 'package:pa_bank_app/constants.dart';
 import 'package:pa_bank_app/custom_widgets/home_components/AddNewCardCloseButton.dart';
 import 'package:pa_bank_app/custom_widgets/home_components/CreditCardText.dart';
-import 'package:pa_bank_app/custom_widgets/home_components/send_money_screen_components/CustomElevatedButton.dart';
+import 'package:pa_bank_app/screens/home_screens/home_screen.dart';
+import 'package:pa_bank_app/services/auth_service.dart';
 
 class AddNewCardScreen extends StatefulWidget {
   const AddNewCardScreen({Key key}) : super(key: key);
@@ -16,15 +17,18 @@ class AddNewCardScreen extends StatefulWidget {
 }
 
 class _AddNewCardScreenState extends State<AddNewCardScreen> {
+  AuthService _authService = AuthService();
   String cardNumber = '';
   String expiryDate = '';
   String cardHolderName = '';
   String cvvCode = '';
+  String cardType = '';
   bool isCvvFocused = false;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -113,7 +117,7 @@ class _AddNewCardScreenState extends State<AddNewCardScreen> {
                           SizedBox(
                             height: 90,
                           ),
-                          CustomElevatedButton(),
+                          _addNewCardElevatedButton(),
                         ],
                       ),
                     ),
@@ -127,6 +131,46 @@ class _AddNewCardScreenState extends State<AddNewCardScreen> {
     );
   }
 
+  _addNewCardElevatedButton() {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        primary: kPrimaryColor,
+      ),
+      child: Container(
+        height: 40,
+        width: MediaQuery.of(context).size.width - 80,
+        margin: const EdgeInsets.all(8),
+        child: Align(
+          alignment: Alignment.center,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: const Text(
+              'Add New Card',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                package: 'flutter_credit_card',
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+          ),
+        ),
+      ),
+      onPressed: () {
+        _authService.createCard(
+            cardNumber, expiryDate, cardHolderName, cvvCode, cardType);
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+          (Route<dynamic> route) => false,
+        );
+      },
+    );
+  }
+
   void onCreditCardModelChange(CreditCardModel creditCardModel) {
     setState(() {
       cardNumber = creditCardModel.cardNumber;
@@ -134,6 +178,7 @@ class _AddNewCardScreenState extends State<AddNewCardScreen> {
       cardHolderName = creditCardModel.cardHolderName;
       cvvCode = creditCardModel.cvvCode;
       isCvvFocused = creditCardModel.isCvvFocused;
+      cardType = creditCardModel.brand;
     });
   }
 }

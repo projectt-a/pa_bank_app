@@ -1,15 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:pa_bank_app/constants.dart';
-import 'package:pa_bank_app/custom_widgets/login_components/ButtonComponent.dart';
 import 'package:pa_bank_app/custom_widgets/login_components/PassTextFieldComponent.dart';
 import 'package:pa_bank_app/custom_widgets/login_components/login_screen_components/CtAccountComponent.dart';
 import 'package:pa_bank_app/custom_widgets/login_components/login_screen_components/ForgotPassTextFieldComponent.dart';
 import 'package:pa_bank_app/custom_widgets/login_components/login_screen_components/LoginEmailtextField.dart';
 import 'package:pa_bank_app/custom_widgets/login_components/login_screen_components/LoginTextComponent.dart';
+import 'package:pa_bank_app/screens/home_screens/home_screen.dart';
+//import 'package:pa_bank_app/services/auth_service.dart';
+
+//AuthService _authService = AuthService();
 
 class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    _loginButton() {
+      return FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).pushReplacement(
+            new MaterialPageRoute(
+              builder: (BuildContext context) => HomeScreen(),
+            ),
+          );
+        },
+        child: const Icon(Icons.arrow_forward_sharp),
+        backgroundColor: kPrimaryColor,
+      );
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -30,7 +47,7 @@ class LoginScreen extends StatelessWidget {
           Positioned(
             top: MediaQuery.of(context).size.height / 1.35,
             left: (MediaQuery.of(context).size.width / 2) - 26,
-            child: ButtonComponent(),
+            child: _loginButton(),
           ),
         ],
       ),
