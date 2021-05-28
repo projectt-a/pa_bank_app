@@ -14,9 +14,9 @@ class _LoginButtonComponentState extends State<LoginButtonComponent> {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      onPressed: () {},
       child: const Icon(Icons.arrow_forward_sharp),
       backgroundColor: kPrimaryColor,
+      onPressed: () async {},
     );
   }
 }

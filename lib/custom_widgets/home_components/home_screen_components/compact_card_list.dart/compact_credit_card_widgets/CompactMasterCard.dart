@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:pa_bank_app/constants.dart';
 import 'package:pa_bank_app/screens/home_screens/card_info_screen.dart';
+import 'package:pa_bank_app/services/firestore_service.dart';
+
+FirestoreService _firestoreService = FirestoreService();
 
 class CompactMasterCard extends StatelessWidget {
   const CompactMasterCard({
     Key key,
+    this.balance = 0,
+    this.validThru = "",
+    this.iban = "",
   }) : super(key: key);
+
+  final double balance;
+  final String validThru;
+  final String iban;
 
   @override
   Widget build(BuildContext context) {
@@ -43,11 +53,10 @@ class CompactMasterCard extends StatelessWidget {
                     ),
                     IconButton(
                       color: Colors.white70,
-                      icon: const Icon(Icons.visibility_outlined),
-                      tooltip: 'Bakiye gizle',
+                      icon: const Icon(Icons.cancel_presentation_rounded),
+                      tooltip: 'Kartı sil',
                       onPressed: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Bakiye gizlendi.')));
+                        _firestoreService.deleteCard(iban);
                       },
                     ),
                   ],
@@ -58,7 +67,7 @@ class CompactMasterCard extends StatelessWidget {
                       Container(
                         width: 160,
                         child: Text(
-                          "\$7 534.14",
+                          "\$" + balance.toString(),
                           style: new TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 28,
@@ -99,7 +108,7 @@ class CompactMasterCard extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "12/24",
+                          validThru,
                           style: new TextStyle(
                             fontStyle: FontStyle.italic,
                             fontSize: 17,

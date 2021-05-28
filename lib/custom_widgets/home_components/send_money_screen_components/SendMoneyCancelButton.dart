@@ -14,14 +14,11 @@ class _SendMoneyCancelButtonState extends State<SendMoneyCancelButton> {
       flex: 1,
       child: Container(
         height: 60,
-        //width: 100,
-        //color: Colors.blueGrey,
         child: Align(
           alignment: Alignment.center,
           child: TextButton(
               child: Text(
                 'Cancel',
-                //textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.blueAccent,
                   fontSize: 20,

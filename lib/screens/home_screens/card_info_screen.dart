@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pa_bank_app/constants.dart';
-import 'package:pa_bank_app/custom_widgets/home_components/home_screen_components/HomeListElement.dart';
 
 class CardInfoScreen extends StatelessWidget {
   @override
@@ -216,12 +215,7 @@ class CardInfoScreen extends StatelessWidget {
                                     width: double.infinity,
                                     child: ListView(
                                       padding: EdgeInsets.all(0),
-                                      children: [
-                                        HomeListElement(),
-                                        HomeListElement(),
-                                        HomeListElement(),
-                                        HomeListElement(),
-                                      ],
+                                      children: [],
                                     ),
                                   ),
                                 ),

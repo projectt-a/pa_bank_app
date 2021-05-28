@@ -4,10 +4,14 @@ import 'package:pa_bank_app/constants.dart';
 class LoginEmailTextField extends StatelessWidget {
   const LoginEmailTextField({
     Key key,
+    this.textEditingControlEmail,
   }) : super(key: key);
+
+  final TextEditingController textEditingControlEmail;
 
   @override
   Widget build(BuildContext context) {
+    var mailController;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -26,6 +30,7 @@ class LoginEmailTextField extends StatelessWidget {
           height: 50.0,
           width: MediaQuery.of(context).size.width / 1.3,
           child: TextFormField(
+            controller: mailController,
             autofocus: false,
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(

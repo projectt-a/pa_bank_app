@@ -66,8 +66,6 @@ class RegisterScreen extends StatelessWidget {
             Positioned(
               top: MediaQuery.of(context).size.height / 1.35,
               left: (MediaQuery.of(context).size.width / 2) - 26,
-              //top: MediaQuery.of(context).size.height / 1.30 + 35,
-              //left: (MediaQuery.of(context).size.width / 2) - 35,
               child: ButtonComponent(),
             ),
           ],

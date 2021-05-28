@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:pa_bank_app/constants.dart';
 import 'package:pa_bank_app/screens/home_screens/card_info_screen.dart';
+import 'package:pa_bank_app/services/firestore_service.dart';
 
-class CompactAppleCard extends StatelessWidget {
-  const CompactAppleCard({
+FirestoreService _firestoreService = FirestoreService();
+
+class CompactAmericanCard extends StatelessWidget {
+  const CompactAmericanCard({
     Key key,
+    this.balance = 0,
+    this.validThru = "",
+    this.iban = "",
   }) : super(key: key);
+
+  final double balance;
+  final String validThru;
+  final String iban;
 
   @override
   Widget build(BuildContext context) {
@@ -35,17 +45,16 @@ class CompactAppleCard extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Image.asset(
-                        "assets/images/apple.png",
-                        width: 25,
-                        height: 31,
+                        "assets/images/american.png",
+                        width: 60,
+                        height: 40,
                       ),
                     ),
                     IconButton(
-                      icon: const Icon(Icons.visibility_outlined),
-                      tooltip: 'Bakiye gizle',
+                      icon: const Icon(Icons.cancel_presentation_rounded),
+                      tooltip: 'Kartı sil',
                       onPressed: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Bakiye gizlendi.')));
+                        _firestoreService.deleteCard(iban);
                       },
                     ),
                   ],
@@ -56,7 +65,7 @@ class CompactAppleCard extends StatelessWidget {
                       Container(
                         width: 160,
                         child: Text(
-                          "\$7 534.14",
+                          "\$" + balance.toString(),
                           style: new TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 28,
@@ -97,7 +106,7 @@ class CompactAppleCard extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "12/24",
+                          validThru,
                           style: new TextStyle(
                             fontStyle: FontStyle.italic,
                             fontSize: 17,

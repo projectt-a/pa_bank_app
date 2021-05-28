@@ -14,9 +14,11 @@ class ForgotPassTextFieldComponent extends StatelessWidget {
       child: Container(
         child: InkWell(
           onTap: () {
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => NewPass()),
+              MaterialPageRoute(
+                builder: (context) => NewPass(),
+              ),
             );
           },
           child: Text(

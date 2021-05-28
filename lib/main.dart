@@ -1,18 +1,28 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pa_bank_app/constants.dart';
-import 'package:pa_bank_app/screens/home_screens/add_new_card_screen.dart';
 import 'package:pa_bank_app/screens/home_screens/home_screen.dart';
-import 'package:pa_bank_app/screens/home_screens/send_money_listedperson.dart';
-import 'package:pa_bank_app/screens/home_screens/send_money_screen.dart';
 import 'package:pa_bank_app/screens/login_screens/login_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  User firebaseUser = FirebaseAuth.instance.currentUser;
+  Widget firstWidget;
+
   @override
   Widget build(BuildContext context) {
+    if (firebaseUser != null) {
+      firstWidget = HomeScreen();
+    } else {
+      firstWidget = LoginScreen();
+    }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'A-Bank',
@@ -20,7 +30,7 @@ class MyApp extends StatelessWidget {
         primaryColor: kPrimaryColor,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: LoginScreen(),
+      home: firstWidget,
     );
   }
 }
