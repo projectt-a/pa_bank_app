@@ -21,7 +21,11 @@ final FirebaseAuth _auth = FirebaseAuth.instance;
 //var selectedCard;
 
 class SendMoneyListedPerson extends StatefulWidget {
-  SendMoneyListedPerson({Key key}) : super(key: key);
+  final String userName;
+  final String friendIban;
+
+  SendMoneyListedPerson({Key key, this.userName, this.friendIban})
+      : super(key: key);
 
   @override
   _SendMoneyListedPersonState createState() => _SendMoneyListedPersonState();
@@ -32,18 +36,18 @@ class _SendMoneyListedPersonState extends State<SendMoneyListedPerson> {
   String recieverIban; //friend iban
   String note;
 
-  final MaskedTextController _ibanController =
-      MaskedTextController(mask: 'TR00 0000 0000 0000 0000 0000 00');
+  // final MaskedTextController _ibanController =
+  //   MaskedTextController(mask: 'TR00 0000 0000 0000 0000 0000 00');
 
   final _noteController = TextEditingController();
+  var _ibanController = TextEditingController();
 
   void initState() {
+    _ibanController = new TextEditingController(text: widget.friendIban);
     super.initState();
 
     _ibanController.addListener(() {
-      setState(() {
-        recieverIban = _ibanController.text; //friend iban otomatik readonly
-      });
+      setState(() {});
     });
 
     _noteController.addListener(() {
@@ -105,7 +109,7 @@ class _SendMoneyListedPersonState extends State<SendMoneyListedPerson> {
                   ],
                 ),
                 SizedBox(height: 10),
-                _sendMoneyNameText(),
+                _sendMoneyNameText(widget.userName),
                 SizedBox(height: 40),
                 _sendMoneyTextFieldIBAN(),
                 SizedBox(height: 10),
@@ -164,6 +168,7 @@ class _SendMoneyListedPersonState extends State<SendMoneyListedPerson> {
         padding: const EdgeInsets.all(8.0),
         child: Center(
           child: TextFormField(
+            enabled: false,
             controller: _ibanController,
             decoration: InputDecoration(
               labelText: 'IBAN',
@@ -191,12 +196,12 @@ class _SendMoneyListedPersonState extends State<SendMoneyListedPerson> {
     );
   }
 
-  _sendMoneyNameText() {
+  _sendMoneyNameText(String nameText) {
     return Container(
       child: Align(
         alignment: Alignment.center,
         child: Text(
-          'Name',
+          nameText,
           style: TextStyle(
             color: Colors.black,
             fontSize: 20,
@@ -260,12 +265,11 @@ class _SendMoneyListedPersonState extends State<SendMoneyListedPerson> {
             ),
           ),
           onPressed: () {
-            //BURASI DEGISECEK
             _authService.updateBalanceGiver(
-                selectedIban, recieverIban, quantity);
+                selectedIban, widget.friendIban, quantity);
             Timer(Duration(milliseconds: 100), () {
               _authService.updateBalanceReciever(
-                  selectedIban, recieverIban, quantity);
+                  selectedIban, widget.friendIban, quantity);
             });
 
             Navigator.pushAndRemoveUntil(
